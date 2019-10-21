@@ -22,7 +22,9 @@ import java.util.stream.Stream;
 public class lanbuda extends HttpServlet {
 
   public static void main(String[] args) {
-    /*List<Order>list= new ArrayList<>();
+
+
+    List<Order>list= new ArrayList<>();
     Order order;
     for(int i=0; i < 1000000; i++) {
       if(i<500000){
@@ -33,8 +35,9 @@ public class lanbuda extends HttpServlet {
       list.add(order);
     }
     System.out.println(list.size());
+    long start=System.currentTimeMillis();
     Map<Integer, List<Order>> collect=list.stream().collect(Collectors.groupingBy(Order::getUserId));
-    System.out.println(collect.keySet().size());*/
+    System.out.println(System.currentTimeMillis()-start);
 
     /*List<Order>list= new ArrayList<>();
     Order order;
@@ -54,14 +57,23 @@ public class lanbuda extends HttpServlet {
       System.out.println("key : "+s+" value : "+collect.get(s));
     }*/
 
-    List<Integer>list =new ArrayList<>(Arrays.asList(1,2,3,4,5,6,1,2,3,4,5));
+    /*List<Integer>list =new ArrayList<>(Arrays.asList(1,2,3,4,5,6,1,2,3,4,5));
     Stream<Integer> distinct=list.stream().distinct();
     List<Integer> collect=distinct.collect(Collectors.toList());
-    distinct.forEach(System.out::println);
+    distinct.forEach(System.out::println);*/
 
-    Map<String,Object> name =new ConcurrentHashMap<>();
-    Map<String,Object> map =new TreeMap<>();
-    Map<String,Object> map1 =new LinkedHashMap<>();
+    /*Map<String,Object> name =new ConcurrentHashMap<>();
+    Map<String,Object> map1 =new LinkedHashMap<>();*/
+
+   /* Map<String,Object> map =new TreeMap<>();
+    map.put("999","1asd");
+    map.put("888","1asd");
+    map.put("111","1asd");
+    map.put("333","1asd");
+    map.put("444","1asd");
+
+    Set<String> strings=map.keySet();
+    strings.forEach(System.out::println);*/
 
 
   }
