@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.DiguiMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.entity.Digui">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="pid" jdbcType="VARCHAR" property="pid" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+    </resultMap>
+
+    <select id="selectAll" resultType="com.example.entity.Digui">
+        select * from digui where id = #{id}
+    </select>
+
+</mapper>
