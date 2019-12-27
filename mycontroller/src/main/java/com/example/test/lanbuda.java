@@ -22,9 +22,31 @@ import java.util.stream.Stream;
 public class lanbuda extends HttpServlet {
 
   public static void main(String[] args) {
+    /**
+     * 测试Steam中的Map的高级用法
+     */
+    List<String> collected = Stream.of("a", "b","e").collect(Collectors.toList());
+    List<Integer> figure = collected.stream().map(s -> {
+      Integer i;
+      switch (s) {
+        case "a":
+          i = 1;
+          break;
+        case "b":
+          i = 2;
+          break;
+        default:
+          i = -1;
+          break;
+      }
+      return i;
+    }).collect(Collectors.toList());
+    figure.forEach(System.out::println);
 
-
-    List<Order>list= new ArrayList<>();
+    /**
+     * 1000000 数据下的分组统计同id的count数值
+     */
+    /*List<Order>list= new ArrayList<>();
     Order order;
     for(int i=0; i < 1000000; i++) {
       if(i<500000){
@@ -37,8 +59,12 @@ public class lanbuda extends HttpServlet {
     System.out.println(list.size());
     long start=System.currentTimeMillis();
     Map<Integer, List<Order>> collect=list.stream().collect(Collectors.groupingBy(Order::getUserId));
-    System.out.println(System.currentTimeMillis()-start);
+    System.out.println(System.currentTimeMillis()-start);*/
 
+
+    /**
+     * 10数据下的 数据下的分组统计同id的count数值
+     */
     /*List<Order>list= new ArrayList<>();
     Order order;
     for(int i=0; i < 10; i++) {
@@ -57,6 +83,9 @@ public class lanbuda extends HttpServlet {
       System.out.println("key : "+s+" value : "+collect.get(s));
     }*/
 
+    /**
+     * 流去重 测试
+     */
     /*List<Integer>list =new ArrayList<>(Arrays.asList(1,2,3,4,5,6,1,2,3,4,5));
     Stream<Integer> distinct=list.stream().distinct();
     List<Integer> collect=distinct.collect(Collectors.toList());
@@ -65,6 +94,9 @@ public class lanbuda extends HttpServlet {
     /*Map<String,Object> name =new ConcurrentHashMap<>();
     Map<String,Object> map1 =new LinkedHashMap<>();*/
 
+    /**
+     * TreeMap 测试
+     */
    /* Map<String,Object> map =new TreeMap<>();
     map.put("999","1asd");
     map.put("888","1asd");

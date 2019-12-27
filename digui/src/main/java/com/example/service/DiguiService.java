@@ -22,4 +22,8 @@ public class DiguiService {
     return diguiMapper.selectAll(id);
   }
 
+  public Digui selectDown(int id){
+    return diguiMapper.selectDown(id);
+  }
+
 }

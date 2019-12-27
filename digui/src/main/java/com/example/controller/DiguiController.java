@@ -22,34 +22,82 @@ import java.util.List;
 @RequestMapping("/digui")
 public class DiguiController {
 
-  private static List<Digui> diguiList = new ArrayList<>();
+  private static List<Digui> diguiList;
 
   @Autowired
   private DiguiService diguiService;
 
-  @RequestMapping("getUser/{id}")
-  public String GetUser(@PathVariable int id){
-    Digui digui=diguiService.selectAll(id);
-    getOne(digui);
+  @RequestMapping("getUp/{id}")
+  public String getUp(@PathVariable int id) {
+    diguiList=new ArrayList<>();
+    getOne(id);
     return diguiList.toString();
   }
 
-
-  private List<Digui> getOne(Digui digui){
-    /*if(digui.getPid()!=0){
-      //根据pid来判定是否到达了根节点
+  /**
+   * 向上递归,求全路径上的所有节点
+   * @param id 最下级节点
+   * @return diguiList 所有的节点集合
+   */
+  private List<Digui> getOne(int id) {
+    Digui digui=diguiService.selectAll(id);
+    if(digui==null){
+      return diguiList;
+    }
+    if(digui.getPid() != 0) {
+      diguiList.add(digui);
+    } else {
       diguiList.add(digui);
       return diguiList;
     }
-    return diguiList;*/
+    return getOne(digui.getPid());
+  }
 
-    Digui digui1=null;
-    if(digui.getPid()!=0){
-      digui1=diguiService.selectAll(digui.getPid());
-      diguiList.add(digui1);
-    }else {
+
+  @RequestMapping("getDown/{id}")
+  public String getDown(@PathVariable int id) {
+    diguiList=new ArrayList<>();
+    Digui digui=diguiService.selectAll(id);
+    diguiList.add(digui);
+    getAll(id);
+    return diguiList.toString();
+  }
+
+  /**
+   * 向上递归,求全路径上的所有节点
+   * @param id 最下级节点
+   * @return diguiList 所有的节点集合
+   */
+  private List<Digui> getOne2(int id) {
+    Digui digui=diguiService.selectAll(id);
+    if(digui==null){
+      return diguiList;
+    }else{
       diguiList.add(digui);
     }
-    return getOne(digui1);
+    return getOne2(digui.getPid());
+   /* if(digui.getPid() != 0) {
+      diguiList.add(digui);
+    } else {
+      diguiList.add(digui);
+      return diguiList;
+    }*/
+    //return getOne(digui.getPid());
+  }
+
+
+  /**
+   * 向下递归,求全路径上的所有节点
+   * @param id 最下级节点
+   * @return diguiList 所有的节点集合
+   */
+  private List<Digui> getAll(int id) {
+    Digui digui=diguiService.selectDown(id);
+    if(digui==null){
+      return diguiList;
+    }else{
+      diguiList.add(digui);
+    }
+    return getAll(digui.getId());
   }
 }

@@ -12,4 +12,8 @@
         select * from digui where id = #{id}
     </select>
 
+    <select id="selectDown" resultType="com.example.entity.Digui">
+        select * from digui where pid = #{id}
+    </select>
+
 </mapper>

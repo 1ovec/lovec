@@ -13,4 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface DiguiMapper {
 
   Digui selectAll(int id);
+
+  Digui selectDown(int id);
 }

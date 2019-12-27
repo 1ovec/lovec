@@ -1,6 +1,5 @@
 package com.example.多态;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -10,7 +9,7 @@ import java.time.format.DateTimeFormatter;
  * @Description
  * @Date 2019/10/17
  */
-public class duotai extends HelloA{
+public class duotai extends HelloA {
 
   public duotai() {
     System.out.println("i'am HelloB");
@@ -25,10 +24,11 @@ public class duotai extends HelloA{
   }
 
   public static void main(String[] args) {
-    LocalDateTime dateTime = LocalDateTime.now();
-    LocalDateTime dateTime1=dateTime.plusMonths(-3L);
-    DateTimeFormatter formatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    System.out.println(formatter3.format(dateTime));  System.out.println(dateTime1.toString());
+    Object o ="zzz";
+    Object p ="zzz";
+
+
+    System.out.println(o.equals(p));
   }
 
 }
